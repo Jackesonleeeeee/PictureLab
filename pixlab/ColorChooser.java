@@ -1,6 +1,8 @@
 import javax.swing.JColorChooser;
 import javax.swing.JFrame;
 import java.awt.Color;
+import javax.swing.UIManager;
+import java.awt.Dimension;
   
 /**
  * A class to make working with a color chooser easier
