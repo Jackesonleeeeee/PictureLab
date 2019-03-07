@@ -120,4 +120,13 @@ public class IntArrayWorker
         }
      return largest;
 }
+public int getColTotal(int n)
+{
+    int result=0;
+    for(int[] i:matrix)
+    {
+        result+=i[n];
+    }
+    return result;
+}
 }
