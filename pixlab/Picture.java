@@ -94,21 +94,62 @@ public class Picture extends SimplePicture
       for (Pixel pixelObj : rowArray)
       {
         pixelObj.setBlue(0);
-        //pixelObj.setRed(0);
-        //pixelObj.setGreen(0);
       }
     }
-  }
-  public void keepOnlyBlue()
+  }// END zeroBlue()
+  
+  public void zeroRed()
   {
-      Pixel[][] pixels=this.getPixels2D();
-      for(Pixel[] row: pixels)
+      Pixel[][] image=this.getPixels2D();
+      for(Pixel[] row: image)
+        for(Pixel p:row)
+        {
+            int red=p.getRed();
+            p.setRed(0);
+        }
+  }// END zeroRed
+  
+  public void zeroGreen()
+  {
+      Pixel[][] image=this.getPixels2D();
+      for(Pixel[] row:image)
         for(Pixel p: row)
         {
-            p.setRed(0);
+            int Green=p.getGreen();
             p.setGreen(0);
         }
+    }
+  public void keepOnlyBlue()
+  {
+      zeroRed();
+      zeroGreen();
+  }// END zeroRed
+  
+  public void negate()
+  {
+      Pixel[][] image=this.getPixels2D();
+      for(Pixel[] row:image)
+        for(Pixel p: row)
+        {
+            p.setBlue(255-p.getBlue());
+            p.setRed(255-p.getRed());
+            p.setGreen(255-p.getGreen());
+        }
   }
+  public void fixUnderWater()
+  {
+      Pixel[][] image=this.getPixels2D();
+      for(Pixel[] row:image)
+        for(Pixel p: row)
+        {
+            if(p.getRed()>10&&p.getRed()<25)
+              if(p.getGreen()>150&& p.getGreen()<170)
+                if(p.getBlue()>160&& p.getGreen()<180)
+                {
+                    p.setRed(255);
+                }
+        }
+    }
   /** Method that mirrors the picture around a 
     * vertical mirror in the center of the picture
     * from left to right */
