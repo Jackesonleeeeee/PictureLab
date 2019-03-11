@@ -169,6 +169,22 @@ public class Picture extends SimplePicture
       }
     } 
   }
+  public void mirrorVerticalrighttoleft()
+  {
+    Pixel[][] pixels = this.getPixels2D();
+    Pixel leftPixel = null;
+    Pixel rightPixel = null;
+    int width = pixels[0].length;
+    for (int row = 0; row < pixels.length; row++)
+    {
+      for (int col = width-1; col > width / 2; col--)
+      {
+        leftPixel = pixels[row][col];
+        rightPixel = pixels[row][width - 1 - col];
+        rightPixel.setColor(leftPixel.getColor());
+      }
+    } 
+  }
   
   /** Mirror just part of a picture of a temple */
   public void mirrorTemple()
@@ -194,6 +210,16 @@ public class Picture extends SimplePicture
     }
   }
   
+  public void MirrorDiagonal()
+  {
+      Pixel[][] image=this.getPixels2D();
+      for(int i=0;i<image.length/2;i++)
+        for(int j=0;j<image[i].length/2;j++)
+        {
+            image[i][j]=image[j][i];
+        }
+    }
+    
   /** copy from the passed fromPic to the
     * specified startRow and startCol in the
     * current picture

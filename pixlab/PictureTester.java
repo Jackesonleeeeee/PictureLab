@@ -26,6 +26,13 @@ public class PictureTester
     caterpillar.explore();
   }
   
+  public static void testMirrorVerticalrighttoleft()
+  {
+    Picture caterpillar = new Picture("caterpillar.jpg");
+    caterpillar.explore();
+    caterpillar.mirrorVerticalrighttoleft();
+    caterpillar.explore();
+  }
   /** Method to test mirrorTemple */
   public static void testMirrorTemple()
   {
@@ -69,6 +76,13 @@ public class PictureTester
         water.fixUnderWater();
         water.explore();
     }
+    public static void testMirrorDiagonal()
+    {
+        Picture redMotorcycle=new Picture("redMotorcycle.jpg");
+        
+        redMotorcycle.MirrorDiagonal();
+        redMotorcycle.explore();
+    }
   /** Main method for testing.  Every class can have a main
     * method in Java */
   public static void main(String[] args)
@@ -82,12 +96,13 @@ public class PictureTester
     //testKeepOnlyGreen();
     //testNegate();
     //testGrayscale();
-    testFixUnderwater();
+    //testFixUnderwater();
     //testMirrorVertical();
+    //testMirrorVerticalrighttoleft();
     //testMirrorTemple();
     //testMirrorArms();
     //testMirrorGull();
-    //testMirrorDiagonal();
+    testMirrorDiagonal();
     //testCollage();
     //testCopy();
     //testEdgeDetection();
