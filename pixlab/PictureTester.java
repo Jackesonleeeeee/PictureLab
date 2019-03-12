@@ -83,6 +83,24 @@ public class PictureTester
         redMotorcycle.MirrorDiagonal();
         redMotorcycle.explore();
     }
+    public static void mirrorHorizontal()
+    {
+        Picture redMotorcycle=new Picture("redMotorcycle.jpg");
+        redMotorcycle.mirrorHorizontalBotToTop();
+        redMotorcycle.explore();
+    }
+    public static void testMirrorArms()
+    {
+        Picture snowman=new Picture("snowman.jpg");
+        snowman.mirrorArms();
+        snowman.explore();
+    }
+    public static void testMirrorGull()
+    {
+        Picture gull=new Picture("seagull.jpg");
+        gull.mirrorGull();
+        gull.explore();
+    }
   /** Main method for testing.  Every class can have a main
     * method in Java */
   public static void main(String[] args)
@@ -101,8 +119,9 @@ public class PictureTester
     //testMirrorVerticalrighttoleft();
     //testMirrorTemple();
     //testMirrorArms();
-    //testMirrorGull();
-    testMirrorDiagonal();
+    testMirrorGull();
+    //mirrorHorizontal();
+    //testMirrorDiagonal();
     //testCollage();
     //testCopy();
     //testEdgeDetection();
