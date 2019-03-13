@@ -124,7 +124,26 @@ public class Picture extends SimplePicture
       zeroRed();
       zeroGreen();
   }// END zeroRed
-  
+  public void grayScale()
+  {
+      Pixel[][] image =this.getPixels2D();
+      for(Pixel[] row:image)
+        for(Pixel p: row)
+        {
+            if((p.getBlue()+p.getGreen()+p.getRed())/3<128)
+            {
+                p.setRed(0);
+                p.setBlue(0);
+                p.setGreen(0);
+            }
+            else
+            {
+                p.setRed(255);
+                p.setBlue(255);
+                p.setGreen(255);
+            }
+        }
+    }
   public void negate()
   {
       Pixel[][] image=this.getPixels2D();
@@ -249,7 +268,7 @@ public class Picture extends SimplePicture
       //r326 c343
       for(int i=231;i<326;i++)
         for(int j=232;j<343;j++)
-          image[i][343+110-1-j].setColor(image[i][j].getColor());
+          image[i][343+113-1-(j-232)].setColor(image[i][j].getColor());
     }
   /** copy from the passed fromPic to the
     * specified startRow and startCol in the
@@ -280,21 +299,44 @@ public class Picture extends SimplePicture
         toPixel.setColor(fromPixel.getColor());
       }
     }   
+  }public void copy(Picture fromPic, 
+                 int startRow, int startCol,
+                 int fBR, int fER,
+                 int fBC, int fEC)
+  {
+    Pixel fromPixel = null;
+    Pixel toPixel = null;
+    Pixel[][] toPixels = this.getPixels2D();
+    Pixel[][] fromPixels = fromPic.getPixels2D();
+    for (int fromRow = fBR, toRow = startRow; 
+         fromRow < fER &&
+         toRow < toPixels.length; 
+         fromRow++, toRow++)
+    {
+      for (int fromCol = fBC, toCol = startCol; 
+           fromCol < fEC &&
+           toCol < toPixels[0].length;  
+           fromCol++, toCol++)
+      {
+        fromPixel = fromPixels[fromRow][fromCol];
+        toPixel = toPixels[toRow][toCol];
+        toPixel.setColor(fromPixel.getColor());
+      }
+    }   
   }
-
   /** Method to create a collage of several pictures */
   public void createCollage()
   {
     Picture flower1 = new Picture("flower1.jpg");
     Picture flower2 = new Picture("flower2.jpg");
-    this.copy(flower1,0,0);
-    this.copy(flower2,100,0);
-    this.copy(flower1,200,0);
+    this.copy(flower1,0,20);
+    this.copy(flower2,100,40);
+    this.copy(flower1,200,60);
     Picture flowerNoBlue = new Picture(flower2);
     flowerNoBlue.zeroBlue();
-    this.copy(flowerNoBlue,300,0);
-    this.copy(flower1,400,0);
-    this.copy(flower2,500,0);
+    this.copy(flowerNoBlue,300,80);
+    this.copy(flower1,400,100);
+    this.copy(flower2,500,120);
     this.mirrorVertical();
     this.write("collage.jpg");
   }
