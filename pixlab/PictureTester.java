@@ -46,7 +46,8 @@ public class PictureTester
   public static void testCollage()
   {
     Picture canvas = new Picture("640x480.jpg");
-    canvas.createCollage();
+    //canvas.createCollage();
+    canvas.myCollage();
     canvas.explore();
   }
   
@@ -108,6 +109,13 @@ public class PictureTester
         gull.mirrorGull();
         gull.explore();
     }
+    public static void testCopy()
+    {
+        Picture ocean=new Picture("beach.jpg");
+        Picture flower=new Picture("snowman.jpg");
+        ocean.copy(flower,10,10);
+        ocean.explore();
+    }
   /** Main method for testing.  Every class can have a main
     * method in Java */
   public static void main(String[] args)
@@ -120,7 +128,7 @@ public class PictureTester
     //testKeepOnlyRed();
     //testKeepOnlyGreen();
     //testNegate();
-    testGrayscale();
+    //testGrayscale();
     //testFixUnderwater();
     //testMirrorVertical();
     //testMirrorVerticalrighttoleft();

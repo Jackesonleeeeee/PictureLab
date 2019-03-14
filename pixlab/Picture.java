@@ -130,18 +130,9 @@ public class Picture extends SimplePicture
       for(Pixel[] row:image)
         for(Pixel p: row)
         {
-            if((p.getBlue()+p.getGreen()+p.getRed())/3<128)
-            {
-                p.setRed(0);
-                p.setBlue(0);
-                p.setGreen(0);
-            }
-            else
-            {
-                p.setRed(255);
-                p.setBlue(255);
-                p.setGreen(255);
-            }
+            p.setBlue(p.getGreen());
+            p.setRed(p.getGreen());
+            p.setGreen(p.getGreen());
         }
     }
   public void negate()
@@ -324,6 +315,24 @@ public class Picture extends SimplePicture
       }
     }   
   }
+  public void myCollage()
+  {
+      Picture f1 = new Picture("flower1.jpg");
+      Picture f2 = new Picture("flower2.jpg");
+      this.copy(f1,0,0);
+      this.copy(f2,50,0);
+      Picture f3=new Picture("snowman.jpg");
+      this.copy(f3,153,0,82,166,164,242);
+      Picture f4=new Picture("snowman.jpg");
+      f4.negate();
+      this.copy(f4,242,0,82,166,164,242);
+      f1.grayScale();
+      this.copy(f1,333,0);
+      this.mirrorVertical();
+      this.write("mycollage.jpg");
+      
+      
+    }
   /** Method to create a collage of several pictures */
   public void createCollage()
   {
