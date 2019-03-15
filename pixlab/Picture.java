@@ -363,8 +363,9 @@ public class Picture extends SimplePicture
     for (int row = 0; row < pixels.length; row++)
     {
       for (int col = 0; 
-           col < pixels[0].length-1; col++)
+           col < pixels[0].length; col++)
       {
+        if(col < pixels[0].length-1){
         leftPixel = pixels[row][col];
         rightPixel = pixels[row][col+1];
         rightColor = rightPixel.getColor();
@@ -374,9 +375,20 @@ public class Picture extends SimplePicture
         else
           leftPixel.setColor(Color.WHITE);
       }
+        if(row < pixels.length-1)
+        {
+        leftPixel = pixels[row][col];
+        rightPixel = pixels[row+1][col];
+        rightColor = rightPixel.getColor();
+        if (leftPixel.colorDistance(rightColor) > 
+            edgeDist)
+          leftPixel.setColor(Color.BLACK);
+        else
+          leftPixel.setColor(Color.WHITE);
+      }
     }
   }
-  
+}
   
   /* Main method for testing - each class in Java can have a main 
    * method 
